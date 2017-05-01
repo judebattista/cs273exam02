@@ -7,20 +7,27 @@
 
 class PrefixTree {
 	PrefixTreeNode* root;
+	std::vector<std::string> foundWords;
 
 public:
 	//Constructors
-	PrefixTree(char rootLetter);
+	PrefixTree();
+	//Create a tree based on a list of words in a file
+	PrefixTree(std::string fileName, bool useConstraint, std::string ineligibleChars = "&\'\\/0123456789");
 
 	//Getters and setters
+	PrefixTreeNode* Root() const;
 
 	//Add a letter to the tree
-	void Add(char letter);
+	void AddLetter(char letter);
 
 	//Remove letter from tree
-	void Remove(char letter);
+	void RemoveLetter(char letter);
 
-	bool IsAWord();
+	//Add a word to the tree
+	void AddWord(std::string word);
 
-	std::vector<std::string> FindWords(std::string prefix);
+	PrefixTreeNode* ContainsPrefix(std::string prefix);
+
+	std::vector<std::string> PrefixTree::FindWords(std::string prefix);
 };
